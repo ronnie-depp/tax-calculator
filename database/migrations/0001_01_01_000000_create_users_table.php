@@ -28,8 +28,9 @@ return new class extends Migration
                 // Constraints disabled within this closure...
                 Schema::create('users', function (Blueprint $table) {
 
-                    $table->uuid('id')->primary();//->first()
-                    $table->bigIncrements('sort_order')->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
+                    $table->bigIncrements('sort_order');//->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
+                    $table->dropPrimary('sort_order');
+                    $table->uuid('id')->default((string) Uuid::uuid4());//->primary();//->first()
                     $table->string('name');
                     $table->string('email')->unique();
                     $table->timestamp('email_verified_at')->nullable();
@@ -38,6 +39,9 @@ return new class extends Migration
                     $table->tinyInteger('is_active');//->default(1)
                     $table->softDeletes($column = 'deleted_at')->comment('Suspended Role.')->nullable();
                     $table->timestamps();
+
+                    // set uuid id column as primary key
+                    $table->primary('id');
                 });
         
                 // Insert Default SuperAdmin/Author
@@ -127,14 +131,19 @@ return new class extends Migration
                     $lastSortOrder = DB::table('sessions')->select('sort_order')->where('sort_order', '<>', NULL)->orderByDesc('sort_order')->first();
                     //$lastSortOrder = DB::table('sessions')->select('sort_order')->where('sort_order', '=', NULL)->orderByDesc('sort_order')->first();
                     */
-                    $table->uuid('id')->primary()->default((string) Uuid::uuid4());//->first();
                     //$request->session()->increment('sort_order')
-                    /*$table->bigInteger*/$table->bigIncrements('sort_order')->unique();//->default((int) 1);////->toInteger();
+                    /*$table->bigInteger*/$table->bigIncrements('sort_order');//->unique();//->default((int) 1);////->toInteger();
+                    $table->dropPrimary('sort_order');
+                    $table->uuid('id')->default((string) Uuid::uuid4());//->primary()//->first();
                     $table->foreignId('user_id')->nullable()->index();
                     $table->string('ip_address', 45)->nullable();
                     $table->text('user_agent')->nullable();
                     $table->longText('payload');
                     $table->integer('last_activity')->index();
+
+                    // set uuid id column as primary key
+                    $table->primary('id');
+
                     // Define Foreign Keys
                     ////$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
                     
