@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\DB;
-/* use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Models\User; */
 
 class Session extends Model
 {
@@ -21,7 +19,7 @@ class Session extends Model
      */
     protected $fillable = [
         'id',
-        'sort_order',
+        //'sort_order',
         'user_id',
         'ip_address',
         'user_agent',
