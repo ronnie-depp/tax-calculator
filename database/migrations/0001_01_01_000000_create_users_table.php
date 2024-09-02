@@ -29,7 +29,7 @@ return new class extends Migration
                 Schema::create('users', function (Blueprint $table) {
 
                     $table->uuid('id')->primary();//->first()
-                    $table->bigIncrements('sort_order')->unique()->default((int) 1);//$table->bigInteger('sort_order')->unique();
+                    $table->bigIncrements('sort_order')->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
                     $table->string('name');
                     $table->string('email')->unique();
                     $table->timestamp('email_verified_at')->nullable();
@@ -129,7 +129,7 @@ return new class extends Migration
                     */
                     $table->uuid('id')->primary()->default((string) Uuid::uuid4());//->first();
                     //$request->session()->increment('sort_order')
-                    /*$table->bigInteger*/$table->bigIncrements('sort_order')->unique()->default((int) 1);////->toInteger();
+                    /*$table->bigInteger*/$table->bigIncrements('sort_order')->unique();//->default((int) 1);////->toInteger();
                     $table->foreignId('user_id')->nullable()->index();
                     $table->string('ip_address', 45)->nullable();
                     $table->text('user_agent')->nullable();
