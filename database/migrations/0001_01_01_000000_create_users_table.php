@@ -13,13 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->first();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->tinyInteger('is_active');
+            $table->string('password')->default(Hash::make('P@ssword'));
+            $table->rememberToken()->nullable();
+            $table->tinyInteger('is_active')->default(1);
             $table->softDeletes($column = 'deleted_at')->comment('Suspended Role.');
             $table->timestamps();
         });
@@ -30,7 +30,7 @@ return new class extends Migration
                 'name' => 'Ronnie DeppleGanger',
                 'email' => 'mr.salman.ahmad@gmail.com',
                 'email_verified_at' => NOW(),
-                'pwd' => md5('P@ssword'),
+                'password' => Hash::make('P@ssword'),//md5('P@ssword')
                 'is_active' => 1,
                 'created_at' => NOW()
             )
@@ -40,7 +40,7 @@ return new class extends Migration
                 'name' => 'Tahreem J. Naseem',
                 'email' => 'myself@tahreems.com',
                 'email_verified_at' => NOW(),
-                'pwd' => md5('P@ssword'),
+                'password' => Hash::make('P@ssword'),
                 'is_active' => 1,
                 'created_at' => NOW()
             )
@@ -52,7 +52,7 @@ return new class extends Migration
                 'name' => 'Cheeku',
                 'email' => 'Cheeku@Meeku.com',
                 'email_verified_at' => NOW(),
-                'pwd' => md5('P@ssword'),
+                'password' => Hash::make('P@ssword'),
                 'is_active' => 1,
                 'created_at' => NOW()
             )
@@ -62,7 +62,7 @@ return new class extends Migration
                 'name' => 'Bumbbu Kaat',
                 'email' => 'BumbbuKaat@TambbuChaat.com',
                 'email_verified_at' => NOW(),
-                'pwd' => md5('P@ssword'),
+                'password' => Hash::make('P@ssword'),
                 'is_active' => 1,
                 'created_at' => NOW()
             )
@@ -72,20 +72,20 @@ return new class extends Migration
                 'name' => 'Ali Hussnain',
                 'email' => 'huss@nain.com',
                 'email_verified_at' => NOW(),
-                'pwd' => md5('P@ssword'),
+                'password' => Hash::make('P@ssword'),
                 'is_active' => 1,
                 'created_at' => NOW()
             )
         );
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->string('email')->primary()->first();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->string('id')->primary()->first();
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
