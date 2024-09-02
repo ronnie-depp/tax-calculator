@@ -18,12 +18,12 @@ return new class extends Migration
             $table->foreignId('role_id')->default(3)->comment('default value 3 for Role: User is used.');
             $table->timestamps();
             // Define Foreign Keys
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+            //$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            //$table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
         });
 
         // Enable Foreign Key Constraints
-        Schema::enableForeignKeyConstraints();
+        //Schema::enableForeignKeyConstraints();
 
         // Insert Default Users, Websites & Roles
 
@@ -110,8 +110,9 @@ return new class extends Migration
     public function down(): void
     {
         // Disable Foreign Key Constraints
-        Schema::disableForeignKeyConstraints();
+        //Schema::disableForeignKeyConstraints();
 
+        /*
         // Drop Foreign Keys
         Schema::table('users_roles', function (Blueprint $table) {
 
@@ -142,6 +143,7 @@ return new class extends Migration
             }
 
         });
+        */
 
         // Drop Table
         Schema::dropIfExists('users_roles');
