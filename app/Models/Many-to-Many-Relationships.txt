@@ -1,0 +1,16 @@
+posts
+    id - integer
+    name - string
+ 
+videos
+    id - integer
+    name - string
+ 
+tags
+    id - integer
+    name - string
+ 
+taggables
+    tag_id - integer
+    taggable_id - integer
+    taggable_type - string
