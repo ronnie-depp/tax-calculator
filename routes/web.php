@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\LoginController;
+use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Support\Facades\Hash;
 
 // homepage
 Route::get('/', function () {
@@ -50,7 +52,7 @@ Route::get('/logout', function (Request $request){
 Route::get('/dashboard', function (Request $request){
     if (Auth::check()) {
         // The user is logged in...
-        $user = json_decode(session('user'));//session('user');//json_decode(session('user'));
+        $user = json_decode((string) session('user'));//session('user');//json_decode(session('user'));
         //dd(session('user'));
         return "You're Authenticated as <b>".$user->name."</b> using <b><u>".$user->email."</u></b> with Authorization Level: <b>".$user->role."</b>. <a href='/logout'>Logout</a>";//.dd($user)//.dd(session("user"))
     } else {

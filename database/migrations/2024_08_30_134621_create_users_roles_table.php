@@ -28,6 +28,7 @@ return new class extends Migration
         // Insert Default Users, Websites & Roles
 
         // Admin (is Agent & User for all available options by default.)
+        /*
         DB::table('users_roles')->insert(
             array(
                 'user_id' => 1,
@@ -100,6 +101,7 @@ return new class extends Migration
                 'created_at' => NOW()
             )
         );
+        */
     }
 
     /**
