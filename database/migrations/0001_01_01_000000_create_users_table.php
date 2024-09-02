@@ -141,7 +141,7 @@ return new class extends Migration
                 $table->longText('payload');
                 $table->integer('last_activity')->index();
                 // Define Foreign Keys
-                $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+                ////$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
                 
             });
     
