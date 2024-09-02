@@ -107,12 +107,29 @@ return new class extends Migration
                         'created_at' => NOW()
                     )
                 );
-        
+            });
+        }
+
+        if (!Schema::hasTable('password_reset_tokens')) {
+            // The table does not exist...
+            
+            Schema::withoutForeignKeyConstraints(function () {
+                // Constraints disabled within this closure...
+                
                 Schema::create('password_reset_tokens', function (Blueprint $table) {
                     $table->string('email')->primary();//->first();
                     $table->string('token');
                     $table->timestamp('created_at')->nullable();
                 });
+            });
+        }
+
+        if (!Schema::hasTable('sessions')) {
+            // The table does not exist...
+            
+            Schema::withoutForeignKeyConstraints(function () {
+                // Constraints disabled within this closure...
+                
         
                 Schema::create('sessions', function (Blueprint $table) {
                     /*
