@@ -28,7 +28,7 @@ return new class extends Migration
                 // Constraints disabled within this closure...
                 Schema::create('users', function (Blueprint $table) {
 
-                    $table->bigIncrements('sort_order');//->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
+                    $table->increments('sort_order');//->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
                     $table->dropPrimary('sort_order');
                     $table->uuid('id')->default((string) Uuid::uuid4());//->primary();//->first()
                     $table->string('name');
@@ -149,7 +149,7 @@ return new class extends Migration
                     //$lastSortOrder = DB::table('sessions')->select('sort_order')->where('sort_order', '=', NULL)->orderByDesc('sort_order')->first();
                     */
                     //$request->session()->increment('sort_order')
-                    /*$table->bigInteger*/$table->bigIncrements('sort_order');//->unique();//->default((int) 1);////->toInteger();
+                    /*$table->bigInteger*/$table->increments('sort_order');//->unique();//->default((int) 1);////->toInteger();
                     $table->dropPrimary('sort_order');
                     $table->uuid('id')->default((string) Uuid::uuid4());//->primary()//->first();
                     $table->foreignId('user_id')->nullable()->index();
