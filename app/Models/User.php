@@ -128,10 +128,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $attributes = [
+    /* protected $attributes = [
         //generates error maybe due to non-static calculated default values using functions are not allowed//'password' => Hash::make('P@ssword'),
         'is_active' => 1,//'options' => '[]',
         //generates error maybe due to non-static calculated default values using functions are not allowed//'created_at' => ''.NOW().'', //'delayed' => false,
-    ];
+    ]; */
 
 }
