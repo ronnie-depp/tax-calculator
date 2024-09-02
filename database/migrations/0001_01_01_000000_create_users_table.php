@@ -28,9 +28,9 @@ return new class extends Migration
                 // Constraints disabled within this closure...
                 Schema::create('users', function (Blueprint $table) {
 
-                    $table->increments('sort_order');//->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
-                    $table->dropPrimary('users_sort_order_primary');
-                    $table->uuid('id')->default((string) Uuid::uuid4());//->primary();//->first()
+                    //$table->increments('sort_order');//->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
+                    //$table->dropPrimary('users_sort_order_primary');
+                    $table->uuid('id')->primary()->default((string) Uuid::uuid4());//->primary();//->first()
                     $table->string('name');
                     $table->string('email')->unique();
                     $table->timestamp('email_verified_at')->nullable();
@@ -41,14 +41,14 @@ return new class extends Migration
                     $table->timestamps();
 
                     // set uuid id column as primary key
-                    $table->primary('id');
+                    //$table->primary('id');
                 });
         
                 // Insert Default SuperAdmin/Author
                 DB::table('users')->insert(
                     array(
                         'id' => (string) Uuid::uuid4(),
-                        'sort_order' => 1,
+                        //'sort_order' => 1,
                         'name' => 'Ronnie DeppleGanger',
                         'email' => 'mr.salman.ahmad@gmail.com',
                         'email_verified_at' => NOW(),
@@ -60,7 +60,7 @@ return new class extends Migration
                 DB::table('users')->insert(
                     array(
                         'id' => (string) Uuid::uuid4(),
-                        'sort_order' => 2,
+                        //'sort_order' => 2,
                         'name' => 'Tahreem J. Naseem',
                         'email' => 'myself@tahreems.com',
                         'email_verified_at' => NOW(),
@@ -74,7 +74,7 @@ return new class extends Migration
                 DB::table('users')->insert(
                     array(
                         'id' => (string) Uuid::uuid4(),
-                        'sort_order' => 3,
+                        //'sort_order' => 3,
                         'name' => 'Cheeku',
                         'email' => 'Cheeku@Meeku.com',
                         'email_verified_at' => NOW(),
@@ -86,7 +86,7 @@ return new class extends Migration
                 DB::table('users')->insert(
                     array(
                         'id' => (string) Uuid::uuid4(),
-                        'sort_order' => 4,
+                        //'sort_order' => 4,
                         'name' => 'Bumbbu Kaat',
                         'email' => 'BumbbuKaat@TambbuChaat.com',
                         'email_verified_at' => NOW(),
@@ -98,7 +98,7 @@ return new class extends Migration
                 DB::table('users')->insert(
                     array(
                         'id' => (string) Uuid::uuid4(),
-                        'sort_order' => 5,
+                        //'sort_order' => 5,
                         'name' => 'Ali Hussnain',
                         'email' => 'huss@nain.com',
                         'email_verified_at' => NOW(),
@@ -149,9 +149,10 @@ return new class extends Migration
                     //$lastSortOrder = DB::table('sessions')->select('sort_order')->where('sort_order', '=', NULL)->orderByDesc('sort_order')->first();
                     */
                     //$request->session()->increment('sort_order')
-                    /*$table->bigInteger*/$table->increments('sort_order');//->unique();//->default((int) 1);////->toInteger();
-                    $table->dropPrimary('sort_order');
-                    $table->uuid('id')->default((string) Uuid::uuid4());//->primary()//->first();
+                    /*$table->bigInteger*/
+                    //$table->bigIncrements('sort_order');//->unique();//->default((int) 1);////->toInteger();
+                    //$table->dropPrimary('sort_order');
+                    $table->uuid('id')->primary()->default((string) Uuid::uuid4());//->primary()//->first();
                     $table->foreignId('user_id')->nullable()->index();
                     $table->string('ip_address', 45)->nullable();
                     $table->text('user_agent')->nullable();
@@ -159,7 +160,7 @@ return new class extends Migration
                     $table->integer('last_activity')->index();
 
                     // set uuid id column as primary key
-                    $table->primary('id');
+                    //$table->primary('id');
 
                     // Define Foreign Keys
                     ////$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
@@ -167,15 +168,15 @@ return new class extends Migration
                 });
         
                 // Insert Default Session
-                DB::table('users')->insert(
+                /* DB::table('users')->insert(
                     array(
                         'id' => (string) Uuid::uuid4(),
-                        'sort_order' => 1,
+                        //'sort_order' => 1,
                         //'user_id' => '8169672b-e182-42f5-bf55-31af5c776c4e',
                         'payload' => 'mr.salman.ahmad@gmail.com',
                         'last_activity' => time(),
                     )
-                );
+                ); */
 
             });
 
