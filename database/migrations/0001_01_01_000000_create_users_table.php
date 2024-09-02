@@ -29,7 +29,7 @@ return new class extends Migration
                 Schema::create('users', function (Blueprint $table) {
 
                     $table->increments('sort_order');//->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
-                    $table->dropPrimary('sort_order');
+                    $table->dropPrimary('users_sort_order_primary');
                     $table->uuid('id')->default((string) Uuid::uuid4());//->primary();//->first()
                     $table->string('name');
                     $table->string('email')->unique();
