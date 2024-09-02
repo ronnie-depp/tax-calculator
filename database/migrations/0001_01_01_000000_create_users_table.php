@@ -128,7 +128,8 @@ return new class extends Migration
                     //$lastSortOrder = DB::table('sessions')->select('sort_order')->where('sort_order', '=', NULL)->orderByDesc('sort_order')->first();
                     */
                     $table->uuid('id')->primary()->default((string) Uuid::uuid4());//->first();
-                    $table->bigInteger('sort_order')->unique();//->default((int) 1);////->toInteger();
+                    //$request->session()->increment('sort_order')
+                    /*$table->bigInteger*/$table->bigIncrements('sort_order')->unique()->default((int) 1);////->toInteger();
                     $table->foreignId('user_id')->nullable()->index();
                     $table->string('ip_address', 45)->nullable();
                     $table->text('user_agent')->nullable();
