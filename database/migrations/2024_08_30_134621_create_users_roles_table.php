@@ -34,73 +34,73 @@ return new class extends Migration
         /*
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 1,
-                'role_id' => 1,// Role: Admin
+                'user_id' => '9e3b5923-2d44-43ae-aa6e-1112f54ea152',
+                'role_id' => 'c5338e54-1a5e-42b3-b772-72caac35b38d',// Role: Admin
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 1,
-                'role_id' => 2,// Role: Agent
+                'user_id' => '9e3b5923-2d44-43ae-aa6e-1112f54ea152',
+                'role_id' => 'c7d69ca6-aebe-417a-a53f-24ed62eeae6b',// Role: Agent
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 1,
-                'role_id' => 3,// Role: User
+                'user_id' => '9e3b5923-2d44-43ae-aa6e-1112f54ea152',
+                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 2,
-                'role_id' => 1,// Role: Admin
+                'user_id' => af5427f9-850c-4a4d-8f86-30fc2491e986,
+                'role_id' => 'c5338e54-1a5e-42b3-b772-72caac35b38d',// Role: Admin
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 2,
-                'role_id' => 2,// Role: Agent
+                'user_id' => af5427f9-850c-4a4d-8f86-30fc2491e986,
+                'role_id' => 'c7d69ca6-aebe-417a-a53f-24ed62eeae6b',// Role: Agent
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 2,
-                'role_id' => 3,// Role: User
+                'user_id' => af5427f9-850c-4a4d-8f86-30fc2491e986,
+                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
                 'created_at' => NOW()
             )
         );
         // Agent
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 3,
-                'role_id' => 2,// Role: Agent
+                'user_id' => '12c63a0d-2338-48f3-a8c5-1b13f71a85fa',
+                'role_id' => 'c7d69ca6-aebe-417a-a53f-24ed62eeae6b',// Role: Agent
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 3,
-                'role_id' => 3,// Role: User
+                'user_id' => '12c63a0d-2338-48f3-a8c5-1b13f71a85fa',
+                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
                 'created_at' => NOW()
             )
         );
         // User
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 4,
-                'role_id' => 3,// Role: User
+                'user_id' => '08ab3b1f-9c7a-4691-916b-4bfe107a18e8',
+                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 5,
-                'role_id' => 3,// Role: User
+                'user_id' => 'f7d92112-9ae5-4e45-9cb7-355d84c919c2',
+                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
                 'created_at' => NOW()
             )
         );
