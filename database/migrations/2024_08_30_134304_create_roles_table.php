@@ -16,9 +16,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary((string) Uuid::uuid4());
             $table->bigInteger('sort_order')->unique();
-            $table->string('role')->comment('User Roles: 1 Admin, 2 Agent, 3 User')->unique();
+            $table->string('role')->comment('User Roles by sort_order: 1 Admin, 2 Agent, 3 User')->unique();
             $table->tinyInteger('is_active');//->default(1)
             $table->softDeletes($column = 'deleted_at')->comment('Suspended Role.')->nullable();
             $table->timestamps();

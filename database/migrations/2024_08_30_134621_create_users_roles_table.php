@@ -17,8 +17,8 @@ return new class extends Migration
     {
         Schema::create('users_roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('role_id')->default(3)->comment('default value 3 for Role: User is used.');
+            $table->foreignId('user_id')->default((string) Uuid::uuid4());
+            $table->foreignId('role_id')->default((string) Uuid::uuid4())->comment('User Roles by sort_order: 1 Admin, 2 Agent, 3 User');
             $table->timestamps();
             // Define Foreign Keys
             //$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
@@ -31,80 +31,80 @@ return new class extends Migration
         // Insert Default Users, Websites & Roles
 
         // Admin (is Agent & User for all available options by default.)
-        /*
+        
         DB::table('users_roles')->insert(
             array(
-                'user_id' => '9e3b5923-2d44-43ae-aa6e-1112f54ea152',
-                'role_id' => 'c5338e54-1a5e-42b3-b772-72caac35b38d',// Role: Admin
+                'user_id' => 'a90b50e1-ccd6-4f4f-af24-c89ca554ab8f',
+                'role_id' => '919be02f-01a3-4e1e-a408-b8fc59e6eba4',// Role: Admin
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => '9e3b5923-2d44-43ae-aa6e-1112f54ea152',
-                'role_id' => 'c7d69ca6-aebe-417a-a53f-24ed62eeae6b',// Role: Agent
+                'user_id' => 'a90b50e1-ccd6-4f4f-af24-c89ca554ab8f',
+                'role_id' => '9c272857-fea4-4651-8e80-de04c93f195d',// Role: Agent
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => '9e3b5923-2d44-43ae-aa6e-1112f54ea152',
-                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
+                'user_id' => 'a90b50e1-ccd6-4f4f-af24-c89ca554ab8f',
+                'role_id' => '6c4f4239-6b89-48a2-b1df-d992775692d2',// Role: User
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => af5427f9-850c-4a4d-8f86-30fc2491e986,
-                'role_id' => 'c5338e54-1a5e-42b3-b772-72caac35b38d',// Role: Admin
+                'user_id' => '010cf77e-694c-4a95-a2a2-77eefa3e7527',
+                'role_id' => '919be02f-01a3-4e1e-a408-b8fc59e6eba4',// Role: Admin
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => af5427f9-850c-4a4d-8f86-30fc2491e986,
-                'role_id' => 'c7d69ca6-aebe-417a-a53f-24ed62eeae6b',// Role: Agent
+                'user_id' => '010cf77e-694c-4a95-a2a2-77eefa3e7527',
+                'role_id' => '9c272857-fea4-4651-8e80-de04c93f195d',// Role: Agent
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => af5427f9-850c-4a4d-8f86-30fc2491e986,
-                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
+                'user_id' => '010cf77e-694c-4a95-a2a2-77eefa3e7527',
+                'role_id' => '6c4f4239-6b89-48a2-b1df-d992775692d2',// Role: User
                 'created_at' => NOW()
             )
         );
         // Agent
         DB::table('users_roles')->insert(
             array(
-                'user_id' => '12c63a0d-2338-48f3-a8c5-1b13f71a85fa',
-                'role_id' => 'c7d69ca6-aebe-417a-a53f-24ed62eeae6b',// Role: Agent
+                'user_id' => 'b41ccada-67d6-496a-8595-5e7805213662',
+                'role_id' => '9c272857-fea4-4651-8e80-de04c93f195d',// Role: Agent
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => '12c63a0d-2338-48f3-a8c5-1b13f71a85fa',
-                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
+                'user_id' => 'b41ccada-67d6-496a-8595-5e7805213662',
+                'role_id' => '6c4f4239-6b89-48a2-b1df-d992775692d2',// Role: User
                 'created_at' => NOW()
             )
         );
         // User
         DB::table('users_roles')->insert(
             array(
-                'user_id' => '08ab3b1f-9c7a-4691-916b-4bfe107a18e8',
-                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
+                'user_id' => '201883f8-6b5d-4f8b-99f1-6e44f40c5924',
+                'role_id' => '6c4f4239-6b89-48a2-b1df-d992775692d2',// Role: User
                 'created_at' => NOW()
             )
         );
         DB::table('users_roles')->insert(
             array(
-                'user_id' => 'f7d92112-9ae5-4e45-9cb7-355d84c919c2',
-                'role_id' => 'c990066b-54ca-4576-ace0-050b39e3b832',// Role: User
+                'user_id' => 'f5ce07ec-9cf2-4dbd-8703-bfbfd2544508',
+                'role_id' => '6c4f4239-6b89-48a2-b1df-d992775692d2',// Role: User
                 'created_at' => NOW()
             )
         );
-        */
+       
     }
 
     /**
