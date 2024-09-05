@@ -30,13 +30,17 @@ return new class extends Migration
 
                     //$table->increments('sort_order');//->unique();/*->default((int) 1);//<--returns String value insterad of Integer*///$table->bigInteger('sort_order')->unique();
                     //$table->dropPrimary('users_sort_order_primary');
-                    $table->uuid('id')->primary()->default((string) Uuid::uuid4());//->primary();//->first()
+                    $table->uuid('id')->default((string) Uuid::uuid4());//->primary();//->first()
+                    $table->dropPrimary('PRIMARY');
+                    $table->bigIncrements('sort_order')->unique('SortOrder');//->default(1)
+                    $table->dropPrimary('PRIMARY');
                     $table->string('name');
-                    $table->string('email')->unique();
+                    $table->string('email')->unique('UserEmail');
                     $table->timestamp('email_verified_at')->nullable();
                     $table->string('password')->default(Hash::make('P@ssword'));
                     $table->rememberToken()->nullable();
-                    $table->tinyInteger('is_active');//->default(1)
+                    $table->tinyInteger('is_active')->default(1);//
+                    //$table->string('current_role')->nullable()->default('');
                     $table->softDeletes($column = 'deleted_at')->comment('Suspended Role.')->nullable();
                     $table->timestamps();
 
@@ -47,8 +51,8 @@ return new class extends Migration
                 // Insert Default SuperAdmin/Author
                 DB::table('users')->insert(
                     array(
-                        'id' => (string) Uuid::uuid4(),
-                        //'sort_order' => 1,
+                        'id' => 'a90b50e1-ccd6-4f4f-af24-c89ca554ab8f',//(string) Uuid::uuid4(),
+                        'sort_order' => 1,
                         'name' => 'Ronnie DeppleGanger',
                         'email' => 'mr.salman.ahmad@gmail.com',
                         'email_verified_at' => NOW(),
@@ -59,8 +63,8 @@ return new class extends Migration
                 );
                 DB::table('users')->insert(
                     array(
-                        'id' => (string) Uuid::uuid4(),
-                        //'sort_order' => 2,
+                        'id' => '010cf77e-694c-4a95-a2a2-77eefa3e7527',//(string) Uuid::uuid4(),
+                        'sort_order' => 2,
                         'name' => 'Tahreem J. Naseem',
                         'email' => 'myself@tahreems.com',
                         'email_verified_at' => NOW(),
@@ -73,8 +77,8 @@ return new class extends Migration
                 // Insert Few Agents & Users
                 DB::table('users')->insert(
                     array(
-                        'id' => (string) Uuid::uuid4(),
-                        //'sort_order' => 3,
+                        'id' => 'b41ccada-67d6-496a-8595-5e7805213662',//(string) Uuid::uuid4(),
+                        'sort_order' => 3,
                         'name' => 'Cheeku',
                         'email' => 'Cheeku@Meeku.com',
                         'email_verified_at' => NOW(),
@@ -85,8 +89,8 @@ return new class extends Migration
                 );
                 DB::table('users')->insert(
                     array(
-                        'id' => (string) Uuid::uuid4(),
-                        //'sort_order' => 4,
+                        'id' => '201883f8-6b5d-4f8b-99f1-6e44f40c5924',//(string) Uuid::uuid4(),
+                        'sort_order' => 4,
                         'name' => 'Bumbbu Kaat',
                         'email' => 'BumbbuKaat@TambbuChaat.com',
                         'email_verified_at' => NOW(),
@@ -97,8 +101,8 @@ return new class extends Migration
                 );
                 DB::table('users')->insert(
                     array(
-                        'id' => (string) Uuid::uuid4(),
-                        //'sort_order' => 5,
+                        'id' => 'f5ce07ec-9cf2-4dbd-8703-bfbfd2544508',//(string) Uuid::uuid4(),
+                        'sort_order' => 5,
                         'name' => 'Ali Hussnain',
                         'email' => 'huss@nain.com',
                         'email_verified_at' => NOW(),
@@ -152,18 +156,22 @@ return new class extends Migration
                     /*$table->bigInteger*/
                     //$table->bigIncrements('sort_order');//->unique();//->default((int) 1);////->toInteger();
                     //$table->dropPrimary('sort_order');
-                    $table->uuid('id')->primary()->default((string) Uuid::uuid4());//->primary()//->first();
-                    $table->foreignId('user_id')->nullable()->index();
+                    $table->uuid('id')->default((string) Uuid::uuid4());//->primary()//->first();
+                    $table->dropPrimary('PRIMARY');
+                    $table->bigIncrements('sort_order')->unique('SortOrder');//->default(1)
+                    $table->dropPrimary('PRIMARY');
+                    $table->uuid('user_id')->nullable()->default((string) Uuid::uuid4())->index('UsersID');
+                    $table->dropPrimary('PRIMARY');
                     $table->string('ip_address', 45)->nullable();
                     $table->text('user_agent')->nullable();
                     $table->longText('payload');
-                    $table->integer('last_activity')->index();
+                    $table->integer('last_activity')->default(time())->index();
 
                     // set uuid id column as primary key
-                    //$table->primary('id');
+                    $table->primary('id');
 
                     // Define Foreign Keys
-                    ////$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+                    $table->foreign('user_id', 'UserID_FK')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
                     
                 });
         

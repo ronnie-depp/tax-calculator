@@ -17,21 +17,19 @@ return new class extends Migration
     {
         Schema::create('users_roles', function (Blueprint $table) {
             $table->id();
-            $table->uuid('user_id');
-            $table->uuid('role_id')->comment('User Roles by sort_order: 1 Admin, 2 Agent, 3 User');
-            //$table->foreignId('user_id')->default((string) Uuid::uuid4());
-            //$table->foreignId('role_id')->default((string) Uuid::uuid4())->comment('User Roles by sort_order: 1 Admin, 2 Agent, 3 User');
-            $table->tinyInteger('is_active')->nullable(true);
+            $table->foreignId('user_id');
+            $table->foreignId('user_id')->default((string) Uuid::uuid4());
+            $table->foreignId('role_id')->default((string) Uuid::uuid4())->comment('User Roles by sort_order: 1 Admin, 2 Agent, 3 User');
             $table->timestamps();
             // Define Foreign Keys
-            $table->foreign('user_id', 'UserID_FK')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('role_id', 'RoleID_FK')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+            //$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            //$table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
         });
 
         // Enable Foreign Key Constraints
-        Schema::enableForeignKeyConstraints();
+        //Schema::enableForeignKeyConstraints();
 
-        // Insert Default Users & Roles
+        // Insert Default Users, Websites & Roles
 
         // Admin (is Agent & User for all available options by default.)
         
@@ -39,7 +37,6 @@ return new class extends Migration
             array(
                 'user_id' => 'a90b50e1-ccd6-4f4f-af24-c89ca554ab8f',
                 'role_id' => '919be02f-01a3-4e1e-a408-b8fc59e6eba4',// Role: Admin
-                'is_active' => 1,// Active Role
                 'created_at' => NOW()
             )
         );
@@ -61,7 +58,6 @@ return new class extends Migration
             array(
                 'user_id' => '010cf77e-694c-4a95-a2a2-77eefa3e7527',
                 'role_id' => '919be02f-01a3-4e1e-a408-b8fc59e6eba4',// Role: Admin
-                'is_active' => 1,// Active Role
                 'created_at' => NOW()
             )
         );
@@ -84,7 +80,6 @@ return new class extends Migration
             array(
                 'user_id' => 'b41ccada-67d6-496a-8595-5e7805213662',
                 'role_id' => '9c272857-fea4-4651-8e80-de04c93f195d',// Role: Agent
-                'is_active' => 1,// Active Role
                 'created_at' => NOW()
             )
         );
@@ -100,7 +95,6 @@ return new class extends Migration
             array(
                 'user_id' => '201883f8-6b5d-4f8b-99f1-6e44f40c5924',
                 'role_id' => '6c4f4239-6b89-48a2-b1df-d992775692d2',// Role: User
-                'is_active' => 1,// Active Role
                 'created_at' => NOW()
             )
         );
@@ -108,7 +102,6 @@ return new class extends Migration
             array(
                 'user_id' => 'f5ce07ec-9cf2-4dbd-8703-bfbfd2544508',
                 'role_id' => '6c4f4239-6b89-48a2-b1df-d992775692d2',// Role: User
-                'is_active' => 1,// Active Role
                 'created_at' => NOW()
             )
         );

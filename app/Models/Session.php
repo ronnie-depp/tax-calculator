@@ -148,5 +148,21 @@ class Session extends Model
      * @var string
      */
     protected $table = 'sessions';
+
+    /**
+     * Class Constructor function
+     */
+    /**
+     * Create a new fluent instance.
+     *
+     * @param  iterable<TKey, TValue>  $attributes
+     * @return void
+     */
+    /* public function __construct($attributes = [])
+    {
+        foreach ($attributes as $key => $value) {
+            $this->attributes[$key] = $value;
+        }
+    } */
     
 }
